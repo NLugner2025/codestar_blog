@@ -3,3 +3,4 @@ core.mongo*
 core.python*
 env.py
 .venv/
+venv/
