@@ -1,11 +1,7 @@
 asgiref==3.8.1
+dj-database-url==2.3.0
 Django==4.2.20
-django-bootstrap5==25.1
-django-crispy-forms==1.14.0
-django-filter==22.1
-djangorestframework==3.14.0
-gunicorn==20.1.0
-pytz==2022.6
-setuptools==76.0.0
-sqlparse==0.4.3
-tzdata==2022.7
+psycopg2-binary==2.9.10
+sqlparse==0.5.3
+typing_extensions==4.12.2
+tzdata==2025.1

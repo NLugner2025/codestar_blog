@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dj_database_url',
     'blog',
-    'todo',
+
 ]
 
 MIDDLEWARE = [
