@@ -1,13 +1,14 @@
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from todos.models import YourModel
+from todos.models import Todo
 from todos.utils import create_notification
+from django.shortcuts import redirect
 
 
 def create_item(request):
-if request.method == 'POST':
-item = YourModel.objects.create(name=request.POST['Notification'])
+	if request.method == 'POST':
+		item = Todo.objects.create(name=request.POST['Notification'])
 		create_notification(
 			request.user, f"Item '{item.name}' created successfully."
 		)
@@ -15,7 +16,7 @@ item = YourModel.objects.create(name=request.POST['Notification'])
 
 
 def update_item(request, item_id):
-	item = YourModel.objects.get(id=item_id)
+	item = Todo.objects.get(id=item_id)
 	if request.method == 'POST':
 		item.name = request.POST['Notification']
 		item.save()
@@ -23,7 +24,7 @@ def update_item(request, item_id):
 		return redirect('home')
 
 def delete_item(request, item_id):
-    item = YourModel.objects.get(id=item_id)
+    item = Todo.objects.get(id=item_id)
     item.delete()
     create_notification(request.user, f"Item '{item.name}' deleted successfully.")
     return redirect('home')
