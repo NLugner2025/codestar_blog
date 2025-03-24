@@ -1,22 +1,26 @@
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Notification
-from .utils import create_notification
+from todos.models import YourModel
+from todos.utils import create_notification
+
 
 def create_item(request):
-    if request.method == 'POST':
-        item = YourModel.objects.create(name=request.POST['name'])
-        create_notification(request.user, f"Item '{item.name}' created successfully.")
-        return redirect('home')
+if request.method == 'POST':
+item = YourModel.objects.create(name=request.POST['Notification'])
+		create_notification(
+			request.user, f"Item '{item.name}' created successfully."
+		)
+		return redirect('home')
+
 
 def update_item(request, item_id):
-    item = YourModel.objects.get(id=item_id)
-    if request.method == 'POST':
-        item.name = request.POST['name']
-        item.save()
-        create_notification(request.user, f"Item '{item.name}' updated successfully.")
-        return redirect('home')
+	item = YourModel.objects.get(id=item_id)
+	if request.method == 'POST':
+		item.name = request.POST['Notification']
+		item.save()
+		create_notification(request.user, f"Item '{item.name}' updated successfully.")
+		return redirect('home')
 
 def delete_item(request, item_id):
     item = YourModel.objects.get(id=item_id)
