@@ -5,6 +5,20 @@
   <head>
     <title>CodeStar Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% if user.is_authenticated %}
+    <h3>Notifications</h3>
+    <ul>
+        {% for notification in user.notification_set.all %}
+            <li>
+                {{ notification.message }}
+                {% if not notification.is_read %}
+                    <strong>New</strong>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+    <!-- Meta Tags -->
 
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />

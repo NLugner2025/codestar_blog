@@ -17,9 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from blog import views as blog_views
+from django.urls import path
+from todos import views
 
 urlpatterns = [
+    path('notifications/read/', views.mark_notifications_as_read, name='mark_notifications_as_read'),
     path("blog/", blog_views.my_blog, name='blog'),
     path('admin/', admin.site.urls),
-    
+    path('todos/', views.ListTodo.as_view(), name='list-todo'),
+    path('todos/create/', views.CreateTodo.as_view(), name='create-todo'),
+    path('todos/update/<int:pk>', views.UpdateTodo.as_view(), name='update-todo'),
+    path('todos/delete/<int:pk>', views.DeleteTodo.as_view(), name='delete-todo'),
 ]
